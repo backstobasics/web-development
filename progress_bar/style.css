@@ -1,0 +1,96 @@
+/* import font family */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,500;1,600&display=swap');
+
+/* root is pseudoclass which represents to html
+  1)root has more authority/specificity than html
+  2)root have global variable scopes which can be used later
+*/
+:root{
+    --line-border-fill:#3498db;
+    --line-border-empty:#e0e0e0;
+}
+*{
+    /* avoid browser default padding and margin */
+    padding: 0;
+    margin: 0;
+    /* border-box enables to include padding and margin in total width and height */
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Mulish',sans-serif;
+    background-color: #fff;
+    height: 100vh;/*vh = viewport height, it takes broswer height*/
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 1234 divs to align horizontally add display flex on parent div */
+.progress-container{
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+    position: relative;
+    margin-bottom: 30px;
+}
+/* add pseudoclass before add center line */
+.progress-container::before{
+   content: '';
+   /* pseudoclass parent postion must be relative */
+   position: absolute;
+   height: 4px;
+   width: 100%;
+   background-color: var(--line-border-empty);
+   /* add center in background using z-index */
+   z-index: -1;
+}
+/* container align to center */
+.container{
+    text-align: center;
+}
+/* progess div */
+.progress{
+    position: absolute;
+    height: 4px;
+    /* will increase with from javascript */
+    width: 0%;
+    background-color: var(--line-border-fill);
+    transition: 0.4s ease;
+    z-index: -1;
+}
+/* add circle css */
+.circle{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid var(--line-border-empty);
+    display: flex;
+    align-items: center;
+    color: #999;
+    justify-content: center;
+    background-color: #fff;
+    transition: 0.4s ease;
+}
+.circle.active{
+    border: 3px solid var(--line-border-fill);
+}
+.btn{
+    background-color: var(--line-border-fill);
+    color: #fff;
+    margin: 5px;
+    padding: 8px 30px;
+    border-radius: 5px;
+}
+/* btn has active,focus ,disabled pseudoclasses */
+.btn:active{
+    transform: scale(0.97);
+}
+.btn:focus{
+    outline: 0;
+}
+.btn:disabled{
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
